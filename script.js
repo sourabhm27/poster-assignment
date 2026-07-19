@@ -254,6 +254,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-lightbox-trigger]").forEach((trigger) => {
     trigger.addEventListener("click", () => {
+      // Find the poster card this trigger belongs to, then grab its real image
+      const card = trigger.closest(".poster-card");
+      const sourceImg = card ? card.querySelector("img.mockup-img") : null;
+
+      // Clear out whatever was in the lightbox stage before
+      lightboxImg.innerHTML = "";
+
+      if (sourceImg && sourceImg.getAttribute("src")) {
+        const fullImg = document.createElement("img");
+        fullImg.src = sourceImg.getAttribute("src");
+        fullImg.alt = sourceImg.getAttribute("alt") || "";
+        lightboxImg.appendChild(fullImg);
+        lightboxImg.classList.add("has-image");
+      } else {
+        lightboxImg.classList.remove("has-image");
+      }
+
       lightboxCaption.textContent = trigger.dataset.caption || "";
       lightbox.classList.add("active");
       lightbox.setAttribute("aria-hidden", "false");
