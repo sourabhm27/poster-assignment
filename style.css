@@ -124,35 +124,68 @@ img { max-width: 100%; display: block; }
 
 .card-copy { color: var(--muted); font-size: 0.98rem; line-height: 1.7; }
 
-/* ---------------------------------- GLASS --------------------------------- */
+/* ---------------------------------- LIQUID GLASS --------------------------------- */
+/* Apple-style "Liquid Glass": deep blur + saturation, a bright refraction
+   rim along the top edge (as if light is bending around a curved pane),
+   and a soft highlight that follows the cursor like a real reflection.
+   --mx / --my are set by JS on mousemove (see script.js §9). */
 .glass-card {
+  --mx: 50%;
+  --my: 0%;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 28px;
-  backdrop-filter: blur(30px) saturate(140%);
-  -webkit-backdrop-filter: blur(30px) saturate(140%);
+  backdrop-filter: blur(44px) saturate(180%);
+  -webkit-backdrop-filter: blur(44px) saturate(180%);
   padding: clamp(1.75rem, 3vw, 2.75rem);
   position: relative;
-  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 20px 60px -20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   transition: transform 0.5s var(--ease-out), border-color 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
+
+/* gradient border sheen — brighter along the top-left, like light
+   catching the rim of a curved glass pane */
 .glass-card::before {
-  /* gradient border sheen */
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(201, 255, 82, 0.25), rgba(255, 255, 255, 0) 40%, rgba(127, 232, 255, 0.15));
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(201, 255, 82, 0.28) 18%, rgba(255, 255, 255, 0) 45%, rgba(127, 232, 255, 0.18) 80%, rgba(255, 255, 255, 0.25) 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* cursor-tracked specular highlight — the core "liquid" reflection */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle 280px at var(--mx) var(--my), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.glass-card:hover::after { opacity: 1; }
+
+.glass-card > * { position: relative; z-index: 2; }
+
 .glass-card:hover {
   transform: translateY(-6px);
   border-color: rgba(201, 255, 82, 0.3);
-  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 0 40px -12px rgba(201, 255, 82, 0.15);
+  box-shadow:
+    0 30px 70px -20px rgba(0, 0, 0, 0.7),
+    0 0 40px -12px rgba(201, 255, 82, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 /* ---------------------------------- NAV --------------------------------- */
@@ -167,6 +200,8 @@ img { max-width: 100%; display: block; }
   transition: top 0.4s var(--ease-out);
 }
 .nav-inner {
+  --mx: 50%;
+  --my: 0%;
   width: 100%;
   max-width: var(--container);
   margin: 0 clamp(1rem, 3vw, 2rem);
@@ -178,14 +213,28 @@ img { max-width: 100%; display: block; }
   background: transparent;
   border: 1px solid transparent;
   backdrop-filter: blur(0px);
+  position: relative;
+  overflow: hidden;
   transition: background 0.5s var(--ease-out), border-color 0.5s var(--ease-out), backdrop-filter 0.5s var(--ease-out), padding 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
+.nav-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle 220px at var(--mx) var(--my), rgba(255, 255, 255, 0.14), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.nav-inner:hover::after { opacity: 1; }
+.nav-inner > * { position: relative; z-index: 1; }
 .nav.scrolled .nav-inner {
-  background: rgba(10, 13, 16, 0.55);
+  background: rgba(10, 13, 16, 0.5);
   border-color: var(--glass-border);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(38px) saturate(180%);
+  -webkit-backdrop-filter: blur(38px) saturate(180%);
+  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.1);
   padding: 0.55rem 0.85rem 0.55rem 1.2rem;
 }
 
@@ -467,8 +516,33 @@ img { max-width: 100%; display: block; }
 .mt-label { color: var(--text); }
 .mt-day { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted-dim); }
 
-/* ---------------------------------- DELIVERABLES --------------------------------- */
-.deliverable-stage { display: flex; justify-content: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+/* ---------------------------------- POSTER SHOWCASE --------------------------------- */
+.posters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+.poster-card { display: flex; flex-direction: column; }
+.poster-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-dim);
+  margin-bottom: 0.9rem;
+}
+.poster-card .mockup-frame { width: 100%; aspect-ratio: 3 / 4; margin-bottom: 1.5rem; }
+.poster-card .card-heading { margin-top: 0.3rem; }
+.poster-card .card-copy { margin-bottom: 1.1rem; }
+.poster-card .chip-list { margin-bottom: 1.6rem; }
+.btn-block { width: 100%; margin-top: auto; }
+
+.mockup-social-art {
+  background:
+    radial-gradient(ellipse at 60% 20%, rgba(127,232,255,0.22), transparent 55%),
+    radial-gradient(ellipse at 25% 80%, rgba(255,122,69,0.18), transparent 60%),
+    linear-gradient(155deg, #10171a 0%, #0a0d10 60%, #06080a 100%);
+}
 
 .mockup-frame {
   position: relative;
@@ -523,14 +597,6 @@ img { max-width: 100%; display: block; }
 .float-slow { animation: float-y 6s ease-in-out infinite; }
 @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 
-.deliverable-body {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-.feature-card { grid-column: span 1; }
-
 .chip-list { display: flex; flex-wrap: wrap; gap: 0.55rem; }
 .chip-list li {
   font-family: var(--font-mono);
@@ -540,61 +606,6 @@ img { max-width: 100%; display: block; }
   background: rgba(201,255,82,0.08);
   border: 1px solid rgba(201,255,82,0.22);
   color: var(--fizz);
-}
-
-.deliverable-cta { display: flex; justify-content: center; }
-
-.split-layout {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-.split-media .mockup-frame { width: 100%; max-width: 520px; }
-
-/* ---------------------------------- GALLERY --------------------------------- */
-.gallery-section { padding-bottom: clamp(4rem, 8vw, 6rem); }
-.gallery-track {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.2) transparent;
-  padding: 0.5rem clamp(1.25rem, 4vw, 3rem) 1.5rem;
-  cursor: grab;
-}
-.gallery-track:active { cursor: grabbing; }
-.gallery-track-inner {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-}
-.gallery-card {
-  width: min(72vw, 340px);
-  flex: none;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  transition: transform 0.5s var(--ease-out);
-}
-.gallery-card:hover { transform: translateY(-8px); }
-.gallery-img {
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  transition: transform 0.6s var(--ease-out);
-}
-.gallery-card:hover .gallery-img { transform: scale(1.06); }
-.gimg-1 { background: linear-gradient(135deg,#1a2210,#0a0d0a); }
-.gimg-2 { background: linear-gradient(135deg,#101c22,#0a0d0a); }
-.gimg-3 { background: linear-gradient(135deg,#22160f,#0a0d0a); }
-.gimg-4 { background: linear-gradient(135deg,#181f14,#0a0d0a); }
-.gimg-5 { background: linear-gradient(135deg,#141c22,#0a0d0a); }
-.gimg-6 { background: linear-gradient(135deg,#20140f,#0a0d0a); }
-.gallery-caption {
-  padding: 1rem 1.25rem 1.25rem;
-  font-size: 0.85rem;
-  color: var(--muted);
 }
 
 /* ---------------------------------- ASSETS --------------------------------- */
@@ -672,12 +683,29 @@ img { max-width: 100%; display: block; }
 /* ---------------------------------- FOOTER --------------------------------- */
 .footer { padding: 0 clamp(1rem, 3vw, 2rem) 2rem; }
 .footer-glass {
+  --mx: 50%;
+  --my: 0%;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 32px;
-  backdrop-filter: blur(30px) saturate(140%);
+  backdrop-filter: blur(44px) saturate(180%);
+  -webkit-backdrop-filter: blur(44px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
   padding: clamp(2rem, 4vw, 3rem) 0 clamp(1.25rem, 2vw, 1.75rem);
+  position: relative;
+  overflow: hidden;
 }
+.footer-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 320px at var(--mx) var(--my), rgba(255, 255, 255, 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.footer-glass:hover::after { opacity: 1; }
+.footer-glass > * { position: relative; z-index: 1; }
 .footer-inner {
   display: flex;
   justify-content: space-between;
@@ -741,10 +769,8 @@ img { max-width: 100%; display: block; }
 
 /* ---------------------------------- RESPONSIVE --------------------------------- */
 @media (max-width: 900px) {
-  .overview-grid, .two-up, .deliverable-body, .assets-grid { grid-template-columns: 1fr; }
-  .split-layout { grid-template-columns: 1fr; }
-  .split-media { order: 1; }
-  .split-content { order: 2; }
+  .overview-grid, .two-up, .assets-grid { grid-template-columns: 1fr; }
+  .posters-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 760px) {
