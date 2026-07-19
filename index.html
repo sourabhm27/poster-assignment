@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SWICHH — Advertisement Creative Assignment | Sourabh Magadum</title>
+<meta name="description" content="Graphic design case study: SWICHH advertisement creatives — a premium soda positioning project by Sourabh Magadum." />
+
+<!-- ============ FONTS ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- ============ STYLES ============ -->
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     LIQUID FILL PROGRESS BAR (signature element)
+     Fills like a soda bottle as the visitor scrolls through the case study
+============================================================= -->
+<div class="fill-track" aria-hidden="true">
+  <div class="fill-liquid" id="fillLiquid"></div>
+</div>
+
+<!-- ============================================================
+     NAVIGATION — becomes a floating glass pill on scroll
+============================================================= -->
+<nav class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      SWICHH<span class="brand-sub">/case&nbsp;study</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" data-nav>Home</a></li>
+      <li><a href="#assignment" data-nav>Assignment</a></li>
+      <li><a href="#deliverable-1" data-nav>Deliverable&nbsp;01</a></li>
+      <li><a href="#deliverable-2" data-nav>Deliverable&nbsp;02</a></li>
+      <li><a href="#assets" data-nav>Assets</a></li>
+      <li><a href="#about" data-nav>About</a></li>
+      <li><a href="#contact" data-nav>Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO — full screen product-launch style intro
+============================================================= -->
+<section class="hero" id="hero">
+  <div class="hero-atmosphere" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- carbonation particles (signature motion, mouse-reactive) -->
+  <canvas id="fizzCanvas" class="fizz-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <p class="eyebrow reveal-up">Graphic Design Assignment · Advertisement Creatives</p>
+    <h1 class="hero-title">
+      <span class="reveal-up" data-delay="1">SWICHH</span>
+    </h1>
+    <p class="hero-tagline reveal-up" data-delay="2">Premium Soda. <span class="tagline-accent">Premium Design.</span></p>
+    <p class="hero-desc reveal-up" data-delay="3">
+      Designed to position SWICHH as a modern, refreshing, premium lifestyle beverage
+      through high-impact advertisement creatives.
+    </p>
+    <div class="hero-cta reveal-up" data-delay="4">
+      <a href="#deliverable-1" class="btn btn-primary" data-ripple>View the Work</a>
+      <a href="#assignment" class="btn btn-ghost" data-ripple>Read the Brief</a>
+    </div>
+  </div>
+
+  <a href="#assignment" class="scroll-indicator" aria-label="Scroll to next section">
+    <span class="scroll-bottle" aria-hidden="true">
+      <span class="scroll-liquid"></span>
+    </span>
+    <span class="scroll-label">Scroll</span>
+  </a>
+</section>
+
+<!-- ============================================================
+     ASSIGNMENT OVERVIEW
+============================================================= -->
+<section class="section" id="assignment">
+  <div class="container">
+    <header class="section-head reveal-up">
+      <p class="eyebrow">Show</p>
+      <h2 class="section-title">Project Overview</h2>
+    </header>
+
+    <div class="glass-card overview-card reveal-up">
+      <div class="overview-grid">
+        <div class="overview-col">
+          <h3 class="card-heading">Assignment Objective</h3>
+          <ul class="premium-list">
+            <li>Reposition SWICHH from a generic soft drink into a premium lifestyle beverage.</li>
+            <li>Design two hero-grade advertisement creatives fit for digital and print rollout.</li>
+            <li>Establish a cohesive visual language: light, condensation, colour and typography.</li>
+            <li>Deliver production-ready assets, mockups and social-format exports.</li>
+          </ul>
+        </div>
+        <div class="overview-col">
+          <h3 class="card-heading">Evaluation Criteria</h3>
+          <ul class="premium-list">
+            <li>Visual craft — lighting, composition, colour grading.</li>
+            <li>Brand alignment — tone, positioning, target audience fit.</li>
+            <li>Typography &amp; layout discipline.</li>
+            <li>Presentation &amp; delivery polish.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-up">
+      <div class="glass-card timeline-card reveal-up">
+        <h3 class="card-heading">Timeline</h3>
+        <ol class="mini-timeline">
+          <li><span class="mt-dot"></span><span class="mt-label">Brief &amp; Research</span><span class="mt-day">Day 1–2</span></li>
+          <li><span class="mt-dot"></span><span class="mt-label">Concept &amp; Moodboard</span><span class="mt-day">Day 3</span></li>
+          <li><span class="mt-dot"></span><span class="mt-label">Design Execution</span><span class="mt-day">Day 4–6</span></li>
+          <li><span class="mt-dot"></span><span class="mt-label">Refinement &amp; Export</span><span class="mt-day">Day 7</span></li>
+          <li><span class="mt-dot"></span><span class="mt-label">Final Submission</span><span class="mt-day">Day 8</span></li>
+        </ol>
+      </div>
+
+      <div class="glass-card reveal-up">
+        <h3 class="card-heading">Submission Requirements</h3>
+        <ul class="premium-list">
+          <li>Two finished advertisement creatives (Deliverable 01 &amp; 02).</li>
+          <li>Editable source files (.psd / .ai).</li>
+          <li>Export set — JPG, PNG, and social media formats.</li>
+          <li>Realistic product mockups for presentation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DELIVERABLE 01 — Product Hero Advertisement
+============================================================= -->
+<section class="section deliverable" id="deliverable-1">
+  <div class="container">
+    <p class="eyebrow reveal-up">Deliverable 01</p>
+    <h2 class="section-title reveal-up">Product Hero Advertisement</h2>
+
+    <div class="deliverable-stage reveal-up">
+      <div class="mockup-frame float-slow" data-lightbox-trigger data-caption="SWICHH Product Hero Advertisement — key visual">
+        <div class="mockup-placeholder mockup-hero-art">
+          <span class="mockup-tag">1600 × 2000 — replace with final key visual</span>
+        </div>
+        <div class="mockup-glare"></div>
+      </div>
+    </div>
+
+    <div class="deliverable-body">
+      <div class="glass-card reveal-up">
+        <h3 class="card-heading">Objective</h3>
+        <p class="card-copy">Put the bottle itself at the centre of attention — a single, unmistakable hero shot that reads instantly across a feed, a billboard, or a shelf-edge poster.</p>
+      </div>
+      <div class="glass-card reveal-up">
+        <h3 class="card-heading">Design Goal</h3>
+        <p class="card-copy">Use light and liquid the way premium beverage brands do: let condensation, fizz and glass reflections carry the luxury, not decoration.</p>
+      </div>
+      <div class="glass-card reveal-up feature-card">
+        <h3 class="card-heading">Key Features</h3>
+        <ul class="chip-list">
+          <li>Premium lighting</li>
+          <li>Sparkling fizz</li>
+          <li>Condensation detail</li>
+          <li>Minimal typography</li>
+          <li>Generous white space</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="deliverable-cta reveal-up">
+      <button class="btn btn-primary" data-ripple data-lightbox-trigger data-caption="SWICHH Product Hero Advertisement — key visual">View Full Design</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DELIVERABLE 02 — Lifestyle Advertisement
+============================================================= -->
+<section class="section deliverable" id="deliverable-2">
+  <div class="container">
+    <p class="eyebrow reveal-up">Deliverable 02</p>
+    <h2 class="section-title reveal-up">Lifestyle Advertisement</h2>
+
+    <div class="split-layout">
+      <div class="split-media reveal-up">
+        <div class="mockup-frame float-slow" data-lightbox-trigger data-caption="SWICHH Lifestyle Advertisement — key visual">
+          <div class="mockup-placeholder mockup-lifestyle-art">
+            <span class="mockup-tag">1600 × 2000 — replace with final key visual</span>
+          </div>
+          <div class="mockup-glare"></div>
+        </div>
+      </div>
+
+      <div class="split-content reveal-up">
+        <h3 class="card-heading">Objective</h3>
+        <p class="card-copy">Show SWICHH inside real, aspirational moments — the drink as a small ritual of a well-designed life, not just a beverage on a table.</p>
+
+        <h3 class="card-heading" style="margin-top:2.25rem;">Creative Direction</h3>
+        <p class="card-copy" style="margin-bottom:1.25rem;">Lifestyle moments across four contexts, each shot with the same premium light language established in Deliverable 01:</p>
+        <ul class="chip-list">
+          <li>Summer</li>
+          <li>Weekend</li>
+          <li>Office</li>
+          <li>Friends</li>
+        </ul>
+
+        <p class="card-copy" style="margin-top:1.75rem;">Positioning stays premium-first — health benefits appear only as quiet, supporting information, never the headline.</p>
+
+        <button class="btn btn-primary" style="margin-top:1.5rem;" data-ripple data-lightbox-trigger data-caption="SWICHH Lifestyle Advertisement — key visual">View Full Design</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERACTIVE GALLERY — horizontal scroll
+============================================================= -->
+<section class="section gallery-section" id="gallery">
+  <div class="container container-wide">
+    <header class="section-head reveal-up">
+      <p class="eyebrow">Process</p>
+      <h2 class="section-title">Interactive Gallery</h2>
+    </header>
+  </div>
+
+  <div class="gallery-track" id="galleryTrack">
+    <div class="gallery-track-inner">
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-1"></div><p class="gallery-caption">Concept sketches</p></div>
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-2"></div><p class="gallery-caption">Colour &amp; light study</p></div>
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-3"></div><p class="gallery-caption">Typography exploration</p></div>
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-4"></div><p class="gallery-caption">Bottle rendering</p></div>
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-5"></div><p class="gallery-caption">Lifestyle scouting</p></div>
+      <div class="gallery-card reveal-up"><div class="gallery-img gimg-6"></div><p class="gallery-caption">Final compositing</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BRAND ASSETS
+============================================================= -->
+<section class="section" id="assets">
+  <div class="container">
+    <header class="section-head reveal-up">
+      <p class="eyebrow">Resources</p>
+      <h2 class="section-title">Brand Assets</h2>
+    </header>
+
+    <div class="assets-grid">
+      <div class="glass-card asset-card reveal-up">
+        <div class="asset-icon" aria-hidden="true">
+          <div class="logo-mark"></div>
+        </div>
+        <h3 class="card-heading">Logo</h3>
+        <p class="card-copy">Primary wordmark, monochrome and reversed variants.</p>
+      </div>
+
+      <div class="glass-card asset-card reveal-up">
+        <div class="asset-icon" aria-hidden="true">
+          <div class="swatch-row">
+            <span class="swatch sw-1"></span>
+            <span class="swatch sw-2"></span>
+            <span class="swatch sw-3"></span>
+            <span class="swatch sw-4"></span>
+          </div>
+        </div>
+        <h3 class="card-heading">Color Palette</h3>
+        <p class="card-copy">Fizz Lime · Citrus Coral · Ice Blue · Deep Ink</p>
+      </div>
+
+      <div class="glass-card asset-card reveal-up">
+        <div class="asset-icon type-icon" aria-hidden="true">Aa</div>
+        <h3 class="card-heading">Typography</h3>
+        <p class="card-copy">Space Grotesk for display, Inter for body copy.</p>
+      </div>
+
+      <div class="glass-card asset-card asset-card-png reveal-up">
+        <div class="asset-icon png-icon" aria-hidden="true">PNG</div>
+        <h3 class="card-heading">Export Set</h3>
+        <p class="card-copy">Transparent PNGs for overlays and presentation.</p>
+      </div>
+    </div>
+
+    <div class="assets-cta reveal-up">
+      <button class="btn btn-primary" data-ripple id="downloadAssetsBtn">Download Assets</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DESIGN PHILOSOPHY — keynote style big type
+============================================================= -->
+<section class="section philosophy" id="philosophy">
+  <div class="container container-narrow">
+    <p class="quote-mark" aria-hidden="true">&ldquo;</p>
+    <blockquote class="philosophy-quote">
+      <span class="p-line">The product</span>
+      <span class="p-line">should always</span>
+      <span class="p-line">be the <em>hero.</em></span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================================
+     SUBMISSION SECTION
+============================================================= -->
+<section class="section" id="submission">
+  <div class="container container-narrow">
+    <header class="section-head reveal-up">
+      <p class="eyebrow">Delivered</p>
+      <h2 class="section-title">Final Submission</h2>
+    </header>
+
+    <div class="glass-card submission-card reveal-up">
+      <ul class="check-list">
+        <li><span class="check-icon">✓</span>Editable Source Files</li>
+        <li><span class="check-icon">✓</span>High-Resolution JPG</li>
+        <li><span class="check-icon">✓</span>Transparent PNG</li>
+        <li><span class="check-icon">✓</span>Social Media Formats</li>
+        <li><span class="check-icon">✓</span>Presentation Mockups</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================= -->
+<footer class="footer" id="about">
+  <div class="footer-glass">
+    <div class="container footer-inner" id="contact">
+      <div class="footer-left">
+        <p class="footer-name">Designed by <strong>Sourabh Magadum</strong></p>
+        <p class="footer-role">Graphic Designer</p>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.98h4V21H3V9.98ZM9.5 9.98H13v1.5h.06c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.44 2.47 4.44 5.68V21h-4v-4.7c0-1.12-.02-2.56-1.56-2.56-1.57 0-1.81 1.22-1.81 2.48V21h-4V9.98Z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Behance" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.5 8.75H4v9h4.5c2.2 0 3.6-1.05 3.6-2.9 0-1.35-.85-2.15-1.9-2.4 0.85-0.35 1.5-1.05 1.5-2.15 0-1.75-1.35-2.55-3.2-2.55ZM6 10.5h2.2c0.9 0 1.4 0.35 1.4 1.05 0 0.7-0.5 1.05-1.4 1.05H6V10.5Zm0 3.65h2.4c1 0 1.55 0.4 1.55 1.15 0 0.8-0.55 1.2-1.55 1.2H6v-2.35ZM15.7 8.4c-2.4 0-4.05 1.7-4.05 4.35 0 2.75 1.65 4.35 4.15 4.35 1.9 0 3.15-0.85 3.7-2.25h-1.9c-0.3 0.55-0.85 0.9-1.75 0.9-1.15 0-1.95-0.7-2.05-1.95h5.85c0.05-2.9-1.35-5.4-3.95-5.4Zm-1.9 3.55c0.15-1.05 0.85-1.7 1.85-1.7 1.05 0 1.7 0.65 1.8 1.7h-3.65ZM13.5 6.5h4.4v1h-4.4v-1Z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Dribbble" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M4 9.5c4.5 1.5 9.5 1.3 14.7-0.6M3.5 14.5c5.5-1.6 10.7-1.1 15 2.2M12 3.2c2.2 3 3.6 6.8 3.9 9.8 0.2 2.4-0.1 5-1 7.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </a>
+        <a href="#" aria-label="Email" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-legal container">© 2026 SWICHH Advertisement Creative Assignment. Case study by Sourabh Magadum.</p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX
+============================================================= -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <div class="lightbox-stage">
+    <div class="lightbox-placeholder" id="lightboxImg"></div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
